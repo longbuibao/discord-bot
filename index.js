@@ -12,7 +12,6 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-
 client.once('ready', () => {
     console.log('Ready!')
 });
@@ -29,7 +28,6 @@ client.on('interactionCreate', async interaction => {
         console.error(error);
         await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
-
 })
 
 client.login(token)
