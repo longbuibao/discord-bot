@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js')
 const { token } = process.env
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
@@ -12,7 +12,7 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-client.once('ready', () => {
+client.once('ready', async() => {
     console.log('Ready!')
 });
 
