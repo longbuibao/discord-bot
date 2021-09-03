@@ -29,11 +29,9 @@ module.exports = {
         }
 
         setTimeout((async(interaction) => {
-            const user = interaction.options.getUser('target');
-            console.log(user)
-            client.channels.cache.get(interaction.channelId).send(`YO @${user?.username}`)
+            client.channels.cache.get(interaction.channelId).send(`YO ${interaction.user} it's time for \`${command}\``)
         }).bind(null, interaction), parseTime(time))
 
-        await interaction.reply("Ok")
+        await interaction.reply(":blush: Ok, got it!")
     },
 };
