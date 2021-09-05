@@ -6,7 +6,7 @@ Simple Discord bot made your life easier a.k.a `Cua`
 ## Features
 
 - `/reminder [WHAT TO DO] [WHEN]` : Specific what you want to do and when, Ex: `/reminder DO SOMETHING 15:15`
-- An a lot of things are in development...
+- And a lot of things are in development...
 
 ## Installation
 
