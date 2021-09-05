@@ -20,7 +20,7 @@ cd dungvt-bot
 npm i
 npm run dev
 ```
-#### Environments variables from OAuth2 on Discord Developer Portal
+#### Environments variables from OAuth2 page on Discord Developer Portal
 
 ```
 token=xxxxx
