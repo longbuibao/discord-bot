@@ -12,17 +12,17 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('reminder')
         .setDescription('remind you to do something...')
-        .addStringOption(option => option.setName('input').setDescription('[what to do] [XX:YY]')),
+        .addStringOption(option => option.setName('input')
+            .setDescription('[what to do] [XX:YY]')
+            .setRequired(true)),
     async execute(interaction) {
+        // console.log('in the reminderjs')
         const reminderString = interaction.options.getString('input')
         const parsedCommand = commandValidator(reminderString)
 
-        if (!parsedCommand) return await interaction.reply("Please input both `what to do` and `when` [XX:YY] 24 hours format)")
+        if (!parsedCommand) return await interaction.reply("Please input both `what to do` and `when` [XX:YY] 24 hours format")
 
         const { todo, time } = parsedCommand
-
-        // console.log(interaction.channelId)
-        // console.log(interaction.guildId)
 
         const jobId = setTimeout((async(interaction) => {
             client.channels.cache.get(interaction.channelId).send(`YO ${interaction.user} it's time for \`${todo}\``)
