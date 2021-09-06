@@ -1,12 +1,6 @@
-require('dotenv').config()
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Client, Intents } = require('discord.js')
-const { token } = process.env
 const parseTime = require('../utils/parseTime')
 const commandValidator = require('../utils/command-validator')
-
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
-client.login(token)
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,6 +19,7 @@ module.exports = {
         const { todo, time } = parsedCommand
 
         const jobId = setTimeout((async(interaction) => {
+            const client = interaction.client
             client.channels.cache.get(interaction.channelId).send(`YO ${interaction.user} it's time for \`${todo}\``)
         }).bind(null, interaction), parseTime(time))
 
