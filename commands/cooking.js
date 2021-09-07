@@ -16,7 +16,6 @@ module.exports = {
         const client = interaction.client
         if (!agrs) {
             await client.channels.cache.get(interaction.channelId).send(`:face_with_monocle: Looking for random recipes...`)
-                // const response = await axios.get()
         }
     },
 };
