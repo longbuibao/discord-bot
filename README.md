@@ -27,6 +27,7 @@ npm run dev
 ```
 token=xxxxx
 clientId=xxxx
+spoonacularApi=xxxxx
 ```
 
 ## Development
