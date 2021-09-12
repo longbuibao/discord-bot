@@ -13,15 +13,15 @@ module.exports = {
             .setRequired(true)
         ),
     async execute(interaction) {
-        const word = interaction.options.getString('input').toLowerCase()
+        const searchRegExp = /[^A-Za-z]+/g
+        const word = interaction.options.getString('input').replaceAll(searchRegExp, "").toLowerCase()
         try {
             const response = await axios.get(apiUrl + word)
-            console.log(response.data)
             if (response.status === 200) {
                 const mess = new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(`${response.data[0].word}`)
-                    .addFields(...wordDef(response.data))
+                    .addFields(...wordDef(response.data[0]))
                     .setTimestamp()
 
                 const row = new MessageActionRow()
