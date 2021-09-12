@@ -15,8 +15,12 @@ module.exports = {
     async execute(interaction) {
         const searchRegExp = /[^A-Za-z]+/g
         const word = interaction.options.getString('input').replaceAll(searchRegExp, "").toLowerCase()
+
         try {
             const response = await axios.get(apiUrl + word)
+
+            console.log(...wordDef(response.data[0]))
+
             if (response.status === 200) {
                 const mess = new MessageEmbed()
                     .setColor('#0099ff')
