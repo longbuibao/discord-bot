@@ -13,11 +13,28 @@ module.exports = {
             .setRequired(true)
         ),
     async execute(interaction) {
-        const searchRegExp = /[^A-Za-z]+/g
+        const searchRegExp = /[^A-Za-z ]+/g
         const word = interaction.options.getString('input').replaceAll(searchRegExp, "").toLowerCase()
+
+        if (word.indexOf(' ') >= 0) {
+            const cambridgeLink = new MessageActionRow()
+                .addComponents(
+                    new MessageButton()
+                    .setLabel('Link to Cambridge Dictionary')
+                    .setStyle('LINK')
+                    .setURL(`https://dictionary.cambridge.org/dictionary/english/${word.replaceAll(' ', '-')}`)
+                )
+            const mess = new MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle(`${word}`)
+                .addFields({ name: 'Hmmmm :yawning_face: ', value: 'Please try Cambridge Dictionary' })
+                .setTimestamp()
+            return await interaction.reply({ embeds: [mess], components: [cambridgeLink] })
+        }
 
         try {
             const response = await axios.get(apiUrl + word)
+            console.log(response.data)
 
             if (response.status === 200) {
                 const mess = new MessageEmbed()
@@ -31,15 +48,21 @@ module.exports = {
                         new MessageButton()
                         .setLabel('Audio')
                         .setStyle('LINK')
-                        .setURL(`https:${response.data[0].phonetics[0].audio}`),
+                        .setURL(response.data[0].phonetics[0] ? `https:${response.data[0].phonetics[0].audio}` : `https://dictionary.cambridge.org/dictionary/english/${word}`),
                     );
-
-                return await interaction.reply({ embeds: [mess], components: [row] })
+                const cambridgeLink = new MessageActionRow()
+                    .addComponents(
+                        new MessageButton()
+                        .setLabel('Link to Cambridge Dictionary')
+                        .setStyle('LINK')
+                        .setURL(`https://dictionary.cambridge.org/dictionary/english/${word}`)
+                    )
+                return await interaction.reply({ embeds: [mess], components: [row, cambridgeLink] })
             }
 
         } catch (error) {
             console.log(error)
-            await interaction.reply(`:smiling_face_with_tear: ${error.message}`)
+            await interaction.reply(`:smiling_face_with_tear: Maybe I can\'t find that word`)
         }
 
     },
