@@ -1,20 +1,9 @@
-function a() {
-    b()
-    var myVar = 2
+document.getElementById('sendButton').addEventListener('click', () => alert('hello'))
 
-    function b() {
-        console.log(this.myVar)
-        console.log(myVar)
-    }
+let n = 0
 
-    var obj = {
-        method: function() {
-            console.log(this)
-        }
-    }
-
-    obj.method()
+//this need to be done, then the click event can be execute
+while (n < 10e+4) {
+    n++
+    console.log(n)
 }
-
-var myVar = 1
-a()
