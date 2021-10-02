@@ -1,0 +1,55 @@
+#define N 10 // so chiec thuyen
+
+
+#define FREE_BOAT 0
+#define BUSY_BOAT 1
+
+#typedef int semaphore
+
+semaphore state[N]; // trang thai cua moi chiec thuyen
+semaphore s[N]; // s[i] == 1 neu thi 2 slots da san sang de lay, s[i] == 0 neu 2 slots chua san sang
+
+semaphore mutex = 1; // Mutual Execlusion cho phep moi tien trinh dc su dung tai 1 thoi diem
+
+
+void ghep_thuyen(int i) { // tham so i the hien cho chiếc thuyền nào
+  while(TRUE) {
+    tao_khach(i); // lấy cả 2 chỗ cùng lúc, hoặc phải chờ và k lấy cái chỗ nào cả
+    serve_boat();
+    release_boat(i); // trả lại cả 2 chỗ
+  }
+}
+
+
+void tao_khach(int i){ // int i thể hiện thuyền nào đang lấy khách
+
+  down(&mutex);
+  state[i] = FREE_BOAT;
+  
+  test(i); // kiểm tra xem có đủ 2 hành khách sẵn sàng để lên thuyền hay không, nếu có thì dựng semaphore s[i] lên
+  
+  up(&mutex);
+  down(&s[i]); //lấy 2 hành khách nếu semaphore s[i] đã đc dựng lên, nếu 2 hành khách chưa sẵn sàng thì ngủ
+   
+}
+
+void test(int i) { // thực hiện thao tác test cho thuyền nào
+  // nếu đủ 2 hành khách thì dựng semaphore s[i] lên, nếu không thì không dựng
+  
+  if(state[i] == FREE_BOAT 
+    && state[LEFT(i)] != BUSY_BOAT // thuyền bên trái còn
+    && state[RIGHT(i)] != BUSY_BOAT // thuyền bên phải còn
+  ) {
+    state[i] = BUSY_BOAT;
+    up(&s[i]); // dựng semaphore s[i] lên nếu 2 khách sẵn sàng
+  }
+}
+
+
+void release_boat(int i) {
+  down(&mutex);
+  state[i] = FREE_BOAT;
+  test(LEFT(i)); // đánh thức thuyền bên trái nếu thuyền ni đang chờ
+  test(RIGHT(i)); // đánh thức thuyền bên phải nếu đang ngủ chờ
+  up(&mutext);
+}
