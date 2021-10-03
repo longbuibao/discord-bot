@@ -1,0 +1,27 @@
+-- tại sao this trong nodejs có lúc trỏ đến một object rỗng, có lúc lại trỏ đến một object rất bự, nhìn có vẻ như là global object?
+trích nguyên văn reddit
+
+```
+Files in Node.js are considered modules. To implement this idea of modules you'll probably already know (or if not, you'll learn it soon) that you have access to require, and to module, and particularly module.exports. That is, you can do...
+
+module.exports = <whatever>;
+
+...to make that thing be "exported" from the module or "public". This is how modules work, you have to explicitly export whatever you want to be visible from the outside.
+
+But to actually make things work smoothly, there's another point you need to consider. Since there is a mechanism that explicitly exports stuff, then there must be some safeguards to avoid making stuff public without wanting to, right? That is, a "module" needs to be encapsulated somehow.
+
+The way this is done is by running your file/module with a specific value of this which is definitely not the global object. If it was, then... well, people would frequently make mistakes and put stuff on it without wanting to. Instead, your module/file is run with the value of module.exports as the value of this.
+
+```
+
+vì vậy
+[11:08 PM]
+file server.js thực chất, node xem nó như là một module file bình thường, và node mặc định nghĩ rằng, người dùng sẽ sử dụng cái file này để public ra một cái function nào đó để sử dụng cho file khác
+[11:10 PM]
+nhưng, nếu có một chức năng như vậy, chỉ muốn lộ ra một số hàm hoặc là một số object, thì cái module đó phải được gói lại theo cách nào đó để nó có thể public ra chính xác hàm, hoặc đối tượng mình cần để lộ ra
+[11:11 PM]
+chính vì vậy, con trỏ this sẽ được sử dụng làm bộ phận "gói" lại các thành phần mà người dùng muốn lộ ra
+[11:12 PM]
+khi mà console.log(this) ở trên chính file đó, ngay tại context lúc này, module.exports chưa có đối tượng nào để làm lộ ra hết, chính vì vậy nó sẽ là một object rỗng
+[11:13 PM]
+khi nó đi vào hàm để thực hiện hàm nào đó, đúng như mong đợi hồi giờ của mình, một context mới sẽ được tạo ra, và ngay lúc này, con trỏ this sẽ được trỏ đến đối tượng global để có thể thực hiện được cái hàm này
