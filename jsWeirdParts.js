@@ -1,1 +1,26 @@
-console.log(1 && console.log('1'))
+const a = {
+    name: 'long',
+    age: 12
+}
+console.log(JSON.parse(JSON.stringify(a)).name)
+
+const b = {
+    "name": "long"
+}
+
+console.log(b.name)
+
+//make a string like object in javasript istead of xml
+//string of data but look like object literals
+
+
+// ----------------------------------------------
+//FUNCTION ARE OBJECT
+
+//first class function
+//everything you can do with other types (object, string, number, boolean), you can do with function
+//e.g assign them with variable, pass them arround, create them
+
+const func = function hello1() { console.log('hello') }
+func()
+console.log(func.name)
