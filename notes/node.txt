@@ -25,3 +25,59 @@ chính vì vậy, con trỏ this sẽ được sử dụng làm bộ phận "gó
 khi mà console.log(this) ở trên chính file đó, ngay tại context lúc này, module.exports chưa có đối tượng nào để làm lộ ra hết, chính vì vậy nó sẽ là một object rỗng
 [11:13 PM]
 khi nó đi vào hàm để thực hiện hàm nào đó, đúng như mong đợi hồi giờ của mình, một context mới sẽ được tạo ra, và ngay lúc này, con trỏ this sẽ được trỏ đến đối tượng global để có thể thực hiện được cái hàm này
+
+
+
+agruments.callee
+callee is a property of the arguments object. It can be used to refer to the currently executing 
+function inside the function body of that function. This is useful when the name of the function is unknown,
+such as within a function expression with no name (also called "anonymous functions").
+
+callee là một thuộc tính để chỉ chính cái hàm nó đang chạy. hữu dụng khi mình dùng hàm mà k có tên, sử dụng callee để refer tới cái hàm mà mình đang chạy
+ví dụ:
+
+function factorial (n) {
+    return !(n > 1) ? 1 : factorial(n - 1) * n;
+}
+
+[1, 2, 3, 4, 5].map(factorial);
+
+ở đây callee sẽ là `factorial`
+
+[1, 2, 3, 4, 5].map(function(n) {
+    return !(n > 1) ? 1 : /* what goes here? */ (n - 1) * n;
+});
+
+nhưng nếu dùng như ri thì sao? k biết được // what gose here là cái gì bởi vì function(n) kia không có cái tên nào hết cho nên mình k gọi lại được
+vì vậy solution là sử dụng `agruments.callee`
+
+[1, 2, 3, 4, 5].map(function(n) {
+    return !(n > 1) ? 1 : arguments.callee(n - 1) * n;
+});
+
+
+nhưng mà agruments.callee bị bỏ đi khi ở `strict mode`
+
+nhưng mà nó bị bỏ đi ở version khác của js
+không nên xài
+lí dó gì đó :v
+
+https://stackoverflow.com/questions/103598/why-was-the-arguments-callee-caller-property-deprecated-in-javascript/235760#235760
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

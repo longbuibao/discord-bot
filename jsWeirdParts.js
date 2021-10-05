@@ -28,17 +28,36 @@
 
 //this will point to different object, different thing, depending on how a function is called
 
-var c = {
-    name: 'c object',
-    log: function() {
-        this.name = 'updated c object'
+// var c = {
+//     name: 'c object',
+//     log: function() {
+//         this.name = 'updated c object'
 
-        var setname = function(who) {
-            who.name = 'updated again c object'
-        }
+//         var setname = function(who) {
+//             who.name = 'updated again c object'
+//         }
 
-        setname(this)
-    }
+//         setname(this)
+//     }
+// }
+// c.log()
+// console.log(c)
+
+
+
+
+
+//js agruments: looklike array, but not a array, it has only 2 properties: length + callee(who's this agruments)
+
+
+
+/*
+
+
+*/
+
+function silly(...args) {
+    console.log(args)
 }
-c.log()
-console.log(c)
+
+silly(1, 2, 3, 4, "long bui")
