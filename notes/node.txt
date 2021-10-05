@@ -79,6 +79,9 @@ https://stackoverflow.com/questions/456177/function-overloading-in-javascript-be
 
 The correct answer is THERE IS NO OVERLOADING IN JAVASCRIPT.
 
+function wrapped with prenthesis () will return that funtion => IIFE
+(function test(){return 0})()
+
 
 
 
