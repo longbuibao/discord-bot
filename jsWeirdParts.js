@@ -69,9 +69,31 @@
 function hello() {
     const arr = []
     for (var i = 0; i < 3; i++) {
-        arr.push(function() {
-            console.log(i)
-        })
+        // tao mot scope function moi de giu lai gia tri cua i, luu lai vao bien j
+        // tai sao phai can them bien j?
+        // tai vi can co bien j de j tro thanh mot bien co o trong execution context cua- 
+        // function moi duoc tao ra
+        // -------------------
+        // |context   (var j)|
+        // |------------------|
+
+        //neu khong co bien j, thi ben trong no cha co bien moi truong nao het, vi vay no van tro-
+        // den bien i ben ngoai (which is 3)
+        //first way to do that
+        // (function() {
+        //     var j = i;
+        //     arr.push(function() {
+        //         console.log(j)
+        //     })
+        // })();
+        // second way to do that :D
+        arr.push(
+            (function(i) {
+                return function() {
+                    console.log(i)
+                }
+            })(i)
+        )
     }
     return arr
 }
@@ -80,3 +102,20 @@ const result = hello()
 result[0]()
 result[1]()
 result[2]()
+
+
+function hello2() {
+    const arr = []
+    for (let i = 0; i < 3; i++) {
+        //every time this loop run, i will be a new variable in memory
+        arr.push(function() {
+            console.log(i) // different loop will point to different spot within that memory
+        })
+    }
+    return arr
+}
+
+const result2 = hello2()
+result2[0]()
+result2[1]()
+result2[2]()
