@@ -70,6 +70,26 @@ https://stackoverflow.com/questions/103598/why-was-the-arguments-callee-caller-p
 
 
 
+function overloading: function that have the same name, but different parameters
+this doesn't really work in javascript, because funtion are just objects, so that functionality is'nt available, (like in
+c++, c#, java)
+
+:v bây giờ mới biêt là trong javascript không có function overloading
+https://stackoverflow.com/questions/456177/function-overloading-in-javascript-best-practices
+
+The correct answer is THERE IS NO OVERLOADING IN JAVASCRIPT.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

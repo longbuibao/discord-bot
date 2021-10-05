@@ -55,6 +55,9 @@
 
 
 */
+function silly(name) {
+    console.log(name)
+}
 
 function silly(...args) {
     console.log(args)
