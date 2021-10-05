@@ -88,7 +88,8 @@ là một hàm đươc trả về cùng với các biến ở bên ngoài lexica
 mặc dù sau khi hàm cha trả về hàm con kết thúc chạy và execution context của nó bị mất, nhưng javascript engine 
 luôn đảm bảo rằng, 
 nếu hàm nhỏ kia có nhu cầu sử dụng lại biến đó thì nó sẽ luôn luôn ở đó, không bị garbage collector dọn đi
-
+tất cả những cái hàm nào mà được tạo trong hàm cha đó, khi mà nó được gọi thì nó sẽ "nhớ" được hết tất cả
+ những biến có trong hàm cha, nơi mà nó được tạo ra
 
 
 

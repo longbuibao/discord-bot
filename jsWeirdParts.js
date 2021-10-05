@@ -66,11 +66,17 @@
 // silly(1, 2, 3, 4, "long bui")
 
 
-const greeting = () => {
-    const name = 'long'
-    return () => {
-        const fullName = name + ' bui'
-        console.log(fullName)
+function hello() {
+    const arr = []
+    for (var i = 0; i < 3; i++) {
+        arr.push(function() {
+            console.log(i)
+        })
     }
+    return arr
 }
-greeting()()
+
+const result = hello()
+result[0]()
+result[1]()
+result[2]()
