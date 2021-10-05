@@ -55,12 +55,22 @@
 
 
 */
-function silly(name) {
-    console.log(name)
-}
+// function silly(name) {
+//     console.log(name)
+// }
 
-function silly(...args) {
-    console.log(args)
-}
+// function silly(...args) {
+//     console.log(args)
+// }
 
-silly(1, 2, 3, 4, "long bui")
+// silly(1, 2, 3, 4, "long bui")
+
+
+const greeting = () => {
+    const name = 'long'
+    return () => {
+        const fullName = name + ' bui'
+        console.log(fullName)
+    }
+}
+greeting()()
