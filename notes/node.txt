@@ -2,15 +2,23 @@
 trích nguyên văn reddit
 
 ```
-Files in Node.js are considered modules. To implement this idea of modules you'll probably already know (or if not, you'll learn it soon) that you have access to require, and to module, and particularly module.exports. That is, you can do...
+Files in Node.js are considered modules. To implement this idea of modules you'll probably already know 
+(or if not, you'll learn it soon) that you have access to require, and to module, and particularly 
+module.exports. That is, you can do...
 
 module.exports = <whatever>;
 
-...to make that thing be "exported" from the module or "public". This is how modules work, you have to explicitly export whatever you want to be visible from the outside.
+...to make that thing be "exported" from the module or "public". 
+This is how modules work, you have to explicitly export whatever you want to be visible from the outside.
 
-But to actually make things work smoothly, there's another point you need to consider. Since there is a mechanism that explicitly exports stuff, then there must be some safeguards to avoid making stuff public without wanting to, right? That is, a "module" needs to be encapsulated somehow.
+But to actually make things work smoothly, there's another point you need to consider. 
+Since there is a mechanism that explicitly exports stuff, then there must be some safeguards to 
+avoid making stuff public without wanting to, right? That is, a "module" needs to be encapsulated somehow.
 
-The way this is done is by running your file/module with a specific value of this which is definitely not the global object. If it was, then... well, people would frequently make mistakes and put stuff on it without wanting to. Instead, your module/file is run with the value of module.exports as the value of this.
+The way this is done is by running your file/module with a specific value of this which is 
+definitely not the global object. If it was, then... well, people would frequently make 
+mistakes and put stuff on it without wanting to. Instead, your module/file is run with the 
+value of module.exports as the value of this.
 
 ```
 
