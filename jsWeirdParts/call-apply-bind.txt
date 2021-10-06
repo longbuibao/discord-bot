@@ -1,0 +1,67 @@
+in execution context:
+	- enviroment variable
+	- outer variable
+	- this
+
+
+```
+reminder `first class function`
+A programming language is said to have First-class functions when functions in that language are treated like
+any other variable. For example, in such a language, a function can be passed as an argument to other functions, can be 
+returned by another function and can be assigned as a value to a variable.
+```
+
+
+would it be nice if we can control what `this` will be point to when the execution context is created
+-> where call, apply, bind come in
+apply, call, bind have to do with the `this` keyword and the arguments that pass to the function as well
+
+
+
+--bind
+	- specific what `this` variable when your function runs
+	- bind method return a new function
+	- whenever its execution context is created, the js engine see that, it was created with the `bind` method
+	-> so the `bind` method creates a copy of what ever function you're calling it on, the `this` keyword will 
+	bind to that argument and return that copy of function
+--call
+	- <functionName>.call this will call the function aka invoke, can call a function with `()`
+	- `call` also allow to decide what the `this` variable will be
+--apply
+	- do exact same thing with call, but accept an array of arguments
+
+
+-------------------------------when to use this?--------------------------------
+ -- function borrowing
+ -- function currying: create a copy of a function with some preset parameters -> very useful in mathematics context
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
