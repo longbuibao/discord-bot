@@ -8,9 +8,11 @@ const mapForEach = (arr, callback) => {
     return res
 }
 
-const greaterSomeValue = (value, item) => {
-    return item > value
-}
+const greaterSomeValue = ((value) => {
+    return (function(value, item) {
+        return item > value
+    }).bind(null, value)
+})
 
-const arr = [1, 2, 3, 4]
-console.log(mapForEach(arr, greaterSomeValue.bind(null, -1)))
+const arr = [-2, 2, 3, 4]
+console.log(mapForEach(arr, greaterSomeValue(-1)))
