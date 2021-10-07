@@ -41,23 +41,19 @@
 // }
 
 
-// function User() {
-//     this.name = 'long'
-//     this.age = 15
-// }
+function User() {
+    this.name = 'long'
+    this.age = 15
+}
 
-// User.prototype.getName = function() {
-//     return this.name
-// }
+User.prototype.getName = function() {
+    return this.name
+}
 
-// console.log(User.__proto__)
+const Long = new User()
 
-// const Long = new User()
-
-// for (const key in Long) console.log(key)
-
-// console.log(Long)
-// console.log(Long.__proto__)
+console.log(Long)
+console.log(Long.__proto__)
 
 
 class Human {
@@ -79,5 +75,4 @@ class Employee extends Human {
 }
 
 const longbui = new Employee()
-
 console.log(longbui.__proto__)

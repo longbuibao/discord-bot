@@ -42,3 +42,7 @@ Funtion prototype
 
 Object.create
 	-- create an empty object with its prototype pointing to what ever you pass in to `Object.create(<you object>)`
+
+
+
+https://medium.com/siliconwat/how-javascript-classes-work-80b0cf483b1d
