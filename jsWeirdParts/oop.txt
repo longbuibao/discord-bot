@@ -1,0 +1,6 @@
+inheritance:
+	-- one object gets access to properties and methods of another object
+classical inheritance and prototype inheritance
+	-- classical: very verbose, can be end up with a huge, massive collections and tree of objects
+	-- prototypal inheritance: something much simpler, flexible, extensible, easy to understand
+-> inheritance in js is different from other programming language
