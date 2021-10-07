@@ -18,3 +18,24 @@ prototype
 
 reflection
 	-- an object can look inside itself, changing its properties and methods
+
+Funtion prototype
+	-- every function has `prototype` property that starts off its life as an empty object
+	-- unless using the function as a funtion constructor, it hangout, do nothing
+	-- when you use the `new` operator to invoke the function then it means something
+
+	--- something.prototype: accessing the prototype of this `something` -> but **NO**
+	in some case, we can use __proto__ to get access to the prototype
+
+	-- the prototype on a function is NOT the prototype of the fucntion
+		--> its the prototype of any objects created if you using the function as a function constructor
+
+	-- used by only `new` operator
+
+	---what happening when set Person.prototype.getName = function()
+	-- prototype chain is that every object has specical property to point to anothor object
+		-- when you call `new` keyword, it create a new empty object and set prototype of that empty object to 
+		the prototype property of the function that you called
+		-- so when you create object with that function constructor, not only the properties or methods that you specific
+		in the constructor, but the prototype property of the function constructor
+	--
