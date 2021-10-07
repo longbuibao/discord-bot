@@ -29,3 +29,13 @@ greeting.call = function() {
 }
 
 greeting.call(john);
+
+const obj = {
+    name: 'png',
+    text: 'hello'
+}
+
+for (const i in obj) {
+    console.log(i)
+    console.log(obj.__proto__)
+}

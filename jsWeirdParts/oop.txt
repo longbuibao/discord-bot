@@ -14,3 +14,7 @@ prototype
 	find in `proto` object, in `proto` object, there maybe another `proto` object and it will find in that `proto` object
 	it look likes obj.prop1, obj.prop2 but it actually find in `proto` object (obj.proto.proto.prop3)
 	-- `Object{}` is always bottom of prototype chain
+
+
+reflection
+	-- an object can look inside itself, changing its properties and methods
