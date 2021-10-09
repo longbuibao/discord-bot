@@ -46,3 +46,8 @@ Object.create
 
 
 https://medium.com/siliconwat/how-javascript-classes-work-80b0cf483b1d
+
+
+
+-- instanceof : if any object down to the prototype chain (__proto__, __proto__, ...), find this type of object-
+return true, else return false

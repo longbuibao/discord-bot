@@ -8,3 +8,5 @@
 	- start a docker container ran previously
 
 -- There is no difference between `docker ps` and `docker container ls`
+
+-- docker container stats <container name>

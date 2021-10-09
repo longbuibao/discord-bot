@@ -46,33 +46,7 @@ function User() {
     this.age = 15
 }
 
-User.prototype.getName = function() {
-    return this.name
-}
+console.log(User.__proto__)
 
-const Long = new User()
-
-console.log(Long)
-console.log(Long.__proto__)
-
-
-class Human {
-    constructor() {
-        this.name = 'I AM HUMAN '
-        this.age = 0
-    }
-    greet() {
-        console.log(this.name + this.age)
-    }
-
-}
-
-class Employee extends Human {
-    constructor() {
-        super()
-        this.id = 12
-    }
-}
-
-const longbui = new Employee()
-console.log(longbui.__proto__)
+console.log(User instanceof Object)
+console.log(User instanceof Function)
