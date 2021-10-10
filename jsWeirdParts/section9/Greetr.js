@@ -53,6 +53,18 @@
             this.language = lang
             this.validate()
             return this
+        },
+        updateH1Tag: function(selector, formal) {
+            // check for selector and jquery if they exists
+            var greeting;
+            if (formal) {
+                greeting = this.formalGreeting()
+                $(selector).text(greeting)
+            } else {
+                greeting = this.formal()
+                $(selector).text(greeting)
+            }
+            return this
         }
     }
 
@@ -60,6 +72,8 @@
         this.firstName = firstName || ''
         this.lastName = lastName || ''
         this.language = language || 'en'
+
+        this.validate()
     }
 
     Greetr.init.prototype = Greetr.prototype
