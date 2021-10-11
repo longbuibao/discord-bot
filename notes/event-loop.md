@@ -10,3 +10,5 @@ The Message Queue is also where user-initiated events like click or keyboard eve
 ECMAScript 2015 introduced the concept of the Job Queue, which is used by Promises (also introduced in ES6/ES2015). It's a way to execute the result of an async function as soon as possible, rather than being put at the end of the call stack.
 
 > Một khái niệm mới là Job Queue, được sử dụng bởi Promise, là một cơ chế mà thực hiện cái kết quả của một hàm bất đồng bộ nhanh nhất có thể, bất cứ lúc nào có thể, hơn là đặt hàm bất đồng bộ đó ở cuối call stack
+
+(event loop)[https://www.youtube.com/watch?v=8zKuNo4ay8E]
