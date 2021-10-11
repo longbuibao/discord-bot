@@ -11,4 +11,4 @@ ECMAScript 2015 introduced the concept of the Job Queue, which is used by Promis
 
 > Một khái niệm mới là Job Queue, được sử dụng bởi Promise, là một cơ chế mà thực hiện cái kết quả của một hàm bất đồng bộ nhanh nhất có thể, bất cứ lúc nào có thể, hơn là đặt hàm bất đồng bộ đó ở cuối call stack
 
-(event loop)[https://www.youtube.com/watch?v=8zKuNo4ay8E]
+[event loop](https://www.youtube.com/watch?v=8zKuNo4ay8E)
