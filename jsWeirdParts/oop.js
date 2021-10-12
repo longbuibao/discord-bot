@@ -51,15 +51,25 @@
 // console.log(User instanceof Object)
 // console.log(User instanceof Function)
 
-const a = [1, 2, 4, 3, 5]
-const b = [1, 3, 4]
+// const a = [1, 2, 4, 3, 5]
+// const b = [1, 3, 4]
 
-const c = a.concat(...b)
+// const c = a.concat(...b)
 
-const d = a.reduce((res, cur) => {
-    if (b.indexOf(cur) === -1) {
-        return res.concat(cur)
+// const d = a.reduce((res, cur) => {
+//     if (b.indexOf(cur) === -1) {
+//         return res.concat(cur)
+//     }
+//     return res
+// }, [])
+// console.log(d)
+
+function outter() {
+    function inner() {
+        console.log(a)
     }
-    return res
-}, [])
-console.log(d)
+    let a = 10
+    return inner
+}
+
+outter()()
