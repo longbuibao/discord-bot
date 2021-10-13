@@ -5,6 +5,13 @@ const allColors: string[] = ['red', 'blue']
 const numbers: Array<number> = [1, 2, 3]
 const dates: Array<Date> = [new Date()]
 
+const res: Array<Date> = dates.map((map: Date) => {
+  console.log(map.getTime())
+  return map
+})
+
+console.log(res)
+
 class Car {
   wheel: string
   constructor() {
