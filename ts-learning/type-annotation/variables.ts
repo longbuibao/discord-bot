@@ -30,3 +30,7 @@ const logNumber: (i: number, car: Car) => void = (i: number, car: Car) => {
 }
 
 logNumber(1, car)
+
+const json = '{"x": 1, "y": 2, "z": 12}'
+const coor: { x: number; y: number } = JSON.parse(json)
+console.log(coor)
