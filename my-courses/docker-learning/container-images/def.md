@@ -26,3 +26,13 @@ Every image starts from very beginning with a blank layer and then every changes
 Underneath, the storage driver that's used by Docker is actually layering, like a stack of pancakes all these changes on top of each other
 
 A container is just a single read/write layer on top of image
+
+# Tag name
+
+The tag is not quite a version and it's not quite a branch, but it lot like Git tags
+It's really just a pointer to a specific image commit and really could be anything, into that repos
+
+```bash
+docker image tag <IMAGE> <NEW TAG>
+docker image push <USERNAME/IMAGE:TAG>
+```
