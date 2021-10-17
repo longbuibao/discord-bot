@@ -1,9 +1,11 @@
 /// <reference types="@types/google.maps" />
 
-import { User } from './User'
 import { Company } from './Company'
+import { User } from './User'
 import { CustomMap } from './CustomMap'
 
 const divId: string = 'map'
 const customMap = new CustomMap(divId)
-customMap.addUserMarker(new User())
+
+customMap.addMarker(new Company())
+customMap.addMarker(new User())

@@ -15,4 +15,9 @@ export class Company {
       lat: parseFloat(faker.address.latitude()),
     }
   }
+  markerContent(): string {
+    return `${this.name} aka ${this.catchPhrase} is locate at lat: ${this.location.lat}, long: ${this.location.lng}`
+  }
+
+  color: 'blue'
 }
