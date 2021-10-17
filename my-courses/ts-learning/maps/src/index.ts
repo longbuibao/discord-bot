@@ -6,3 +6,4 @@ import { CustomMap } from './CustomMap'
 
 const divId: string = 'map'
 const customMap = new CustomMap(divId)
+customMap.addUserMarker(new User())
