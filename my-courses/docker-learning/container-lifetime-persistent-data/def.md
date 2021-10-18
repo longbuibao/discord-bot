@@ -47,3 +47,16 @@ The first way you can tell a container that it needs to worry about a volumes is
 
 Command to create a Docker volume, required to do this before `docker run` to use custom drivers and labels.
 This is the only way to actually specify a different driver (plug-in stuff, you can _plug_ this volume to any container)
+
+# Persistent Data: Bind Mounting
+
+- Mount a host file or directory to a container file or directory
+- Basically just two locations pointing to the same physical location on disk
+- Skips `UFS`, and host files overwrite any in container, you are not going to wipe out your host location when you delete the container
+- Because bind mounts are usually host specific, they need specific data to be on the hard drive of the host in order to work, you CAN'T specify them in a `Dockerfile`, have to use it at the run time you run `docker container run` command
+
+```bash
+... run -v /Users/longbui/stuff:/path/container
+```
+
+> The left side of the colon `a:b` the path `a` to map into the container `b`
