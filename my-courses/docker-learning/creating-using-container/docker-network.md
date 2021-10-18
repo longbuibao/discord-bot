@@ -97,20 +97,20 @@ docker container exec -it nginx_alpine ping new_nginx
 
 #### `docker network ls`
 
-Show networks
+> Show networks
 
 #### `docker network inspect`
 
-Inspect a network
+> Inspect a network
 
 #### `docker network create --driver`
 
-Create a network
+> Create a network
 
 #### `docker network connect`
 
-Attach a network to container
+> Attach a network to container
 
 #### `docker network disconnect`
 
-Detach a network from a container
+> Detach a network from a container
