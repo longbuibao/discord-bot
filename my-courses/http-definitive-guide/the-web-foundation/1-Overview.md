@@ -39,3 +39,11 @@
   URN are still experimental and not yet widely adopted.
 
 **use URI and URL interchangeably is allowed**
+
+# Transaction
+
+An HTTP transaction consists of a request command (sent from client to server), and a response result (sent form the server back to the client). This communication happens with formatted blocks of data called _HTTP messages_
+
+# Methods
+
+HTTP supports several different request commands, called _HTTP methods_. Every HTTP request message has a method. The method tells the server what action to perform (fetch a web page, run a gateway program, delete a file,...)
