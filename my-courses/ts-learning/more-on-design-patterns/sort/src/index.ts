@@ -1,9 +1,20 @@
-console.log('hi there')
-const a = 1
-const c = 2
-const myFunc = () => {
-  console.log('hello')
+class Sorter {
+  constructor(public collection: number[]) {}
+
+  sort(): void {
+    const { length } = this.collection
+
+    for (let i = 0; i < length - 1; i++)
+      for (let j = i + 1; j < length; j++) {
+        if (this.collection[i] > this.collection[j]) {
+          const temp: number = this.collection[i]
+          this.collection[i] = this.collection[j]
+          this.collection[j] = temp
+        }
+      }
+  }
 }
-myFunc()
-myFunc()
-myFunc()
+
+const sorter = new Sorter([1, -1, -2, 3, 5, -11])
+sorter.sort()
+console.log(sorter.collection)
