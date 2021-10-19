@@ -18,3 +18,17 @@ The Union Operator, when we use it, TypeScript behind the scenes is going to res
 > ```
 >
 > We just only can access properties that are common to both an array of numbers and a string
+
+# Type guard
+
+A type guard is going to be a check on the type of this collection, once we run a type guard, we are going to essentially going to clarify that type of value we are working with. It will store the access to all the different properties associated with this collection.
+
+```typescript
+function sort(collection: number[] | string): void {
+	//there is no all methods of number array here
+	if(collection instanceof Array) {
+		// all access to methods that `Array` has, will be restored here
+		collection.<SOME METHODs>
+	}
+}
+```

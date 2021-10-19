@@ -6,10 +6,13 @@ class Sorter {
 
     for (let i = 0; i < length - 1; i++)
       for (let j = i + 1; j < length; j++) {
-        if (this.collection[i] > this.collection[j]) {
-          const temp: number = this.collection[i]
-          this.collection[i] = this.collection[j]
-          this.collection[j] = temp
+        //type guard
+        if (this.collection instanceof Array) {
+          if (this.collection[i] > this.collection[j]) {
+            const temp: number = this.collection[i]
+            this.collection[i] = this.collection[j]
+            this.collection[j] = temp
+          }
         }
       }
   }
