@@ -1,8 +1,15 @@
-import { CharactersCollection } from './CharactersCollection'
+import { LinkedList } from './LinkedList'
 import { Sorter } from './Sorter'
 
-const charsCollection = new CharactersCollection('Xaayb')
-const sorter = new Sorter(charsCollection)
+const ll = new LinkedList()
+
+const sorter = new Sorter(ll)
+
+ll.add(-100)
+ll.add(2)
+ll.add(1)
+ll.add(3)
+ll.add(-10)
 
 sorter.sort()
-console.log(charsCollection.data)
+ll.print()
