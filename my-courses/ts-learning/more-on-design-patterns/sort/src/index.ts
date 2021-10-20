@@ -1,7 +1,8 @@
-import { NumbersCollection } from './NumbersCollection'
+import { CharactersCollection } from './CharactersCollection'
 import { Sorter } from './Sorter'
 
-const collection = new NumbersCollection([-101, 3, 4, 5, -1])
-const sorter = new Sorter(collection)
+const charsCollection = new CharactersCollection('Xaayb')
+const sorter = new Sorter(charsCollection)
+
 sorter.sort()
-console.log(collection.data)
+console.log(charsCollection.data)
