@@ -50,4 +50,27 @@ The `length` look likes a method, but we can access it as a property.
 # Notes on `interface`
 
 `interface` only specifies the properties name and respective types of some other class or some other object,
-`interface` doesn't actually make any claims about these methods doing the correct things. Keep in mind this
+`interface` doesn't actually make any claims about these methods doing the correct things. Keep in mind this.
+
+# Abstract classes
+
+- Can't not be used to create an object directly.
+- Only use as a parent class.
+- The implemented methods can refer to other methods that don't actually exist yet.
+- Can make child classes promise to implement some other method
+
+# Interfaces vs Abstract classes
+
+`interface`
+
+> - Set up a contract between different classes.
+> - Use when we have very different objects that we want to work together (without a direct dependency between them).
+> - Promotes loose coupling (components are weakly associated with each other).
+
+`inheritance/Abstract class`
+
+> - Set up a contract between different classes.
+> - Use when we are trying to build up a definition of an object
+> - Strongly couples classes together
+
+**In general, we always want to first reach for interfaces as a solution to code reuse, unless we are in a scenario where we have some different objects that are very closely related**
