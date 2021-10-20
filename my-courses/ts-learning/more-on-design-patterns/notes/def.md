@@ -32,3 +32,5 @@ function sort(collection: number[] | string): void {
 	}
 }
 ```
+
+# `get` keyword
