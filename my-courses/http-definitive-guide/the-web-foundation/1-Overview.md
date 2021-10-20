@@ -47,3 +47,21 @@ An HTTP transaction consists of a request command (sent from client to server), 
 # Methods
 
 HTTP supports several different request commands, called _HTTP methods_. Every HTTP request message has a method. The method tells the server what action to perform (fetch a web page, run a gateway program, delete a file,...)
+
+# Status code
+
+Every HTTP response message comes back with a status code
+
+> 200 OK. Document returned correctly
+> 302 Redirect. Go some place else to get the resource
+> 404 Not Found. Can't find this resource
+
+# Web Pages Can Consist of Multiple Objects
+
+An application often issues multiple HTTP transactions to accomplish a task. The browser performs one transaction to fetch the HTML "skeleton", then issues additional HTTP transactions for each embedded image,...These embedded resources might event reside on different servers
+
+# Messages
+
+- HTTP messages are simple, line-oriented sequences of characters.
+- HTTP messages sent from web clients to web servers are called _request messages_. Messages from servers to clients are called _response messages_
+- HTTP messages consist of three parts: - _Start line_: The first line of the message is the start line, indicating what to do for a request or what happened for a response. - _Header fields_: Zero or more header fields follow the start line. Each header field consists of a name and a value, separated by a colon (:). The headers end with a blank line. - _Body_: After the blank line is an optional message body containing any kind of data. The body may can contain a binary data (images, videos, audio,...) and also can contain text.
