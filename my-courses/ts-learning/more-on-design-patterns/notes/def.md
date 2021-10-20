@@ -34,3 +34,20 @@ function sort(collection: number[] | string): void {
 ```
 
 # `get` keyword
+
+```typescript
+export class NumbersCollection {
+  constructor(public data: number[]) {}
+
+  get length(): number {
+    return this.data.length
+  }
+}
+```
+
+The `length` look likes a method, but we can access it as a property.
+
+# Notes on `interface`
+
+`interface` only specifies the properties name and respective types of some other class or some other object,
+`interface` doesn't actually make any claims about these methods doing the correct things. Keep in mind this
