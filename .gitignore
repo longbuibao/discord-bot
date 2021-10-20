@@ -5,3 +5,4 @@ dist/
 .Dockerfile.swp
 .cache/
 *.tsbuildinfo
+my-courses/**/build
