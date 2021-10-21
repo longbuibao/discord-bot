@@ -27,3 +27,24 @@ services: # containers. same as `docker run`
 
 - `docker-compose up`: Set up volumes/networks and start all containers
 - `docker-compose down`: Stop all containers and remove cont/vol/net
+
+# Adding image building to compose file
+
+```yaml
+version: '2'
+
+# based off compose-sample-2, only we build nginx.conf into image
+# uses sample HTML static site from https://startbootstrap.com/themes/agency/
+
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - '80:80'
+  web:
+    image: httpd
+    volumes:
+      - ./html:/usr/local/apache2/htdocs/
+```
