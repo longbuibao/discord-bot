@@ -11,7 +11,7 @@
 			"skipFiles": [
 				"<node_internals>/**"
 			],
-			"program": "${workspaceFolder}/jsWeirdParts.js"
+			"program": "${workspaceFolder}/my-courses/ts-learning/reuseable-code/src/index.ts"
 		}
 	]
 }
