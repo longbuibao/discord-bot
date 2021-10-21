@@ -7,3 +7,24 @@
 ```bash
 npm install @types/node
 ```
+
+# enum
+
+Represent for a very close connection between `enum members`, indicate that there only values in this enum collection is possible for some value
+
+- Follow near-identical syntax rules as normal objects.
+- Create an object with the same keys and values when converted from TS to JS.
+- Primary goal is to signal to other engineers that these are all closely related values.
+- Use whenever we have a small fixed set of values that are all closely related and **known at compile time**.
+
+```typescript
+enum MatchResult {
+  HomeWin = 'H',
+  AwayWin = 'A',
+  Draw = 'D',
+}
+
+const printMatchResult = (): MatchResult => {}
+```
+
+The code above indicate that only some values in `MatchResult` are possible for returned value.
