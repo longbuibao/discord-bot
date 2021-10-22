@@ -1,11 +1,10 @@
-import fs from 'fs'
+import { CsvFileReader } from './CsvFileReader'
 
-const matches = fs
-  .readFileSync('football.csv', { encoding: 'utf-8' })
-  .split('\n')
-  .map((data: string): string[] => data.split(','))
+const reader = new CsvFileReader('football.csv')
 
-// console.log(matches)
+reader.read()
+
+// show off :odnice:
 
 // const mUwins = matches.reduce(
 //   (res: string[], cur: string[]): string[] => {
@@ -30,7 +29,7 @@ enum MatchResult {
 }
 
 let manUnitedWins = 0
-for (const cur of matches) {
+for (const cur of reader.data) {
   if (
     (cur[1] === 'Man United' && cur[5] === MatchResult.HomeWin) ||
     (cur[2] === 'Man United' && cur[5] === MatchResult.AwayWin)
@@ -39,5 +38,9 @@ for (const cur of matches) {
 }
 
 console.log(
-  `Man United wins ${manUnitedWins} game${manUnitedWins === 1 ? '' : 's'}`
+  `Man United won ${manUnitedWins} game${manUnitedWins === 1 ? '' : 's'}`
 )
+let num: number = 1
+let anything: any = '1a'
+num = anything
+console.log(typeof num) // print number
