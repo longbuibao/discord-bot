@@ -1,4 +1,5 @@
 import { CsvFileReader } from './CsvFileReader'
+import { MatchResult } from './MatchResult'
 
 const reader = new CsvFileReader('football.csv')
 
@@ -19,14 +20,13 @@ reader.read()
 //   },
 //   ['MU', '0']
 // )
-
 // console.log(mUwins)
+// let num: number = 1
+// let anything: any = '1a'
+// num = anything
+// console.log(typeof num) // print number
 
-enum MatchResult {
-  HomeWin = 'H',
-  AwayWin = 'A',
-  Draw = 'D',
-}
+// console.log(reader.data[0])
 
 let manUnitedWins = 0
 for (const cur of reader.data) {
@@ -40,7 +40,3 @@ for (const cur of reader.data) {
 console.log(
   `Man United won ${manUnitedWins} game${manUnitedWins === 1 ? '' : 's'}`
 )
-let num: number = 1
-let anything: any = '1a'
-num = anything
-console.log(typeof num) // print number
