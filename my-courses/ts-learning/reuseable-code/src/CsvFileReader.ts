@@ -1,14 +1,14 @@
 import fs from 'fs'
-import { dateStringToDate } from './utils'
 import { MatchResult } from './MatchResult'
-
 //tuple
-type MatchData = [Date, string, string, number, number, MatchResult, string]
+// type MatchData = [Date, string, string, number, number, MatchResult, string]
 
-export class CsvFileReader {
-  data: MatchData[] = []
+export abstract class CsvFileReader<T> {
+  data: T[] = []
 
   constructor(public filename: string) {}
+
+  abstract mapRow(row: string[]): T
 
   // this.data = [MatchData, MatchData]
   // which is [
@@ -21,16 +21,6 @@ export class CsvFileReader {
       .readFileSync(this.filename, { encoding: 'utf-8' })
       .split('\n')
       .map((data: string): string[] => data.split(','))
-      .map(
-        (row: string[]): MatchData => [
-          dateStringToDate(row[0]),
-          row[1],
-          row[2],
-          parseInt(row[3]),
-          parseInt(row[4]),
-          row[5] as MatchResult,
-          row[6],
-        ]
-      )
+      .map(this.mapRow)
   }
 }

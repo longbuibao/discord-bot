@@ -6,3 +6,4 @@ dist/
 .cache/
 my-courses/**/build/
 *.tsbuildinfo
+*.bak
