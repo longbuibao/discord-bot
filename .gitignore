@@ -3,7 +3,6 @@ node_modules/
 .cache/
 dist/
 .Dockerfile.swp
-.cache/
 my-courses/**/build/
 *.tsbuildinfo
 *.bak
