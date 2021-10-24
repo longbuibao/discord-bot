@@ -35,3 +35,8 @@ The code above indicate that only some values in `MatchResult` are possible for 
   > When we work with functions, we pass arguments to customize how the function body behaves. With `generics` we are going to define classes and function and we're going to customize the different types inside of those class and function definitions by passing in a types as though kind of somewhat like an argument
 - Allows us to define the type of a property/argument/return value at a feature point.
 - Used heavily when writing reusable code.
+
+# Inheritance vs Composition
+
+- Inheritance: Characterized by an **'is a'** relationship between two classes
+- Composition: Characterized by an **'has a'** relationship between two classes
