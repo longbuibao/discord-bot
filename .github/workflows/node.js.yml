@@ -7,45 +7,38 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      #
-      # ... your other steps, such as running tests, etc...
-      #
-      - name: Set up SSH
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ./deploy.key
-          sudo chmod 600 ./deploy.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
         env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      # (optional - only needed if your config uses environment variables)
-      - name: Create env file
+      - name: Stop the server
+        run: ssh staging 'pm2 delete all'
+
+      - name: Check out the source
+        run: ssh staging 'cd dungvt-bot && git fetch && git reset --hard origin/master'
+
+      - name: npm install
+        run: ssh staging 'npm install'
+
+      - name: create .env file
         run: |
-          touch .env
-          echo token=${{ secrets.token }} >> .env
-          echo clientId=${{ secrets.clientId }} >> .env
-          echo spoonacularApi=${{ secrets.spoonacularApi }} >> .env
+          ssh staging 'touch .env'
+          ssh staging 'echo token=${{ secrets.TOKEN }} >> .env'
+          ssh staging 'echo clientId=${{secrets.CLIENTID}} >> .env'
+          ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> .env'
 
-      - name: Install PM2
-        run: sudo npm i -g pm2
-
-      - name: Install package
-        run: npm install
-
-      # - name: Remove all pm2 previous
-      #   run: pm2 delete cua-bot
-
-      - name: pwd
-        run: pwd
-
-      - name: whoami
-        run: whoami
-
-      - name: Deploy
-        run: pm2 start "npm run hello-cua" --name cua-bot
-        # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
-        # run: yarn deploy
+      - name: Start the server
+        run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
