@@ -24,17 +24,20 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Install pm2
-        run: ssh staging 'sudo npm install -g pm2'
+      # - name: Install pm2
+      #   run: ssh staging 'sudo npm install -g pm2'
 
-      - name: Stop the server
-        run: ssh staging 'pm2 delete all'
+      # - name: Stop the server
+      #   run: ssh staging 'pm2 delete all'
 
       - name: Check out the source
         run: ssh staging 'cd dungvt-bot && git fetch && git reset --hard origin/master'
 
-      - name: npm install
-        run: ssh staging 'npm install'
+      - name: Print something
+        run: ssh staging 'pwd;whoami;ls -a'
+
+      # - name: npm install
+      #   run: ssh staging 'npm install'
 
       - name: create .env file
         run: |
@@ -43,5 +46,5 @@ jobs:
           ssh staging 'echo clientId=${{secrets.CLIENTID}} >> .env'
           ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> .env'
 
-      - name: Start the server
-        run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
+      # - name: Start the server
+      #   run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
