@@ -43,3 +43,9 @@ In a swarm, it replaces the `docker run` command, and allows us to add extra fea
 
 - It store the configuration of the Swarm and actually encrypts it. Then it will wait for any other nodes before it starts actually replicating the database over to them.
 - One of the key components of Swarm that differentiated it when it first came out was that we didn't need an additional key value storage system or some database architecture to be the back end configuration management of our Swarm.
+
+# Some commands
+
+- `docker service ls`: list all service
+- `docker service create`: create a new service
+- `docker service ps <service name>`: list all which node is running some container
