@@ -39,7 +39,6 @@ jobs:
 
       - name: create .env file
         run: |
-          ssh staging 'rm dungvt-bot/*.env'
           ssh staging 'pm2 delete all'
           ssh staging 'cd dungvt-bot; git fetch --all; git reset --hard origin/main'
           ssh staging 'touch dungvt-bot/.env'
