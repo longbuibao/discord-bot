@@ -28,7 +28,7 @@ jobs:
           touch .env
           echo token=${{ secrets.token }} >> .env
           echo clientId=${{ secrets.clientId }} >> .env
-          echo spoonacularApi=${{ secrets.380b5dc810bf47a9834fd73411f0ef92 }} >> .env
+          echo spoonacularApi=${{ secrets.spoonacularApi }} >> .env
 
       - name: Install PM2
         run: npm i pm2
