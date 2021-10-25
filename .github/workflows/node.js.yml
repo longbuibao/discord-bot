@@ -1,7 +1,7 @@
 name: CI - Master
-  on:
-    push:
-      branches: [ main ]
+on:
+  push:
+    branches: [main]
 
 jobs:
   deploy:
@@ -32,13 +32,13 @@ jobs:
 
       - name: Install PM2
         run: npm i pm2
-      
+
       - name: Install package
         run: npm install
 
       - name: Remove all pm2 previous
         run: pm2 delete cua-bot
-        
+
       - name: Deploy
         run: pm2 start "npm run hello-cua" --name cua-bot
         # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
