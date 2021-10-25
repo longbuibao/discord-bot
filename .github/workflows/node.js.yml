@@ -44,7 +44,7 @@ jobs:
           ssh staging 'echo token=${{ secrets.TOKEN }} >> dungvt-bot/.env'
           ssh staging 'echo clientId=${{secrets.CLIENTID}} >> dungvt-bot/.env'
           ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> dungvt-bot/.env'
-          ssh staging 'cd dungvt-bot;pm2 delete all ;pm2 start "npm run hello-cua" --name cua-bot"'
+          ssh staging 'cd dungvt-bot;pm2 delete all ;pm2 start \"npm run hello-cua\" --name cua-bot\"'
 
       # - name: Start the server
       #   run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
