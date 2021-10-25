@@ -6,9 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./dungvt-bot
+
     steps:
       - name: Configure SSH
         run: |
@@ -44,6 +42,7 @@ jobs:
 
       - name: create .env file
         run: |
+          ssh staging 'cd dungvt-bot'  
           ssh staging 'touch .env'
           ssh staging 'echo token=${{ secrets.TOKEN }} >> .env'
           ssh staging 'echo clientId=${{secrets.CLIENTID}} >> .env'
