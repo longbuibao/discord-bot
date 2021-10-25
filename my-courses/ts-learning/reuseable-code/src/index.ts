@@ -1,9 +1,10 @@
 import { MatchReader } from './MatchReader'
 import { CsvFileReader } from './CsvFileReader'
-import { MatchResult } from './MatchResult'
+import { WinAnalysis } from './analyzers/WinAnalysis'
 
 const csvFileReader = new CsvFileReader('football.csv')
 const matchReader = new MatchReader(csvFileReader)
+const analysis = new WinAnalysis('Man United')
 
 matchReader.load()
-console.log(matchReader.matches)
+console.log(analysis.run(matchReader.matches))
