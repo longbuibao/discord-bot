@@ -22,6 +22,6 @@ module.exports = {
             client.channels.cache.get(interaction.channelId).send(`YO ${interaction.user} it's time for \`${todo}\``)
         }).bind(null, interaction), parseTime(time))
 
-        await interaction.reply(`:blush: Ok, got it! :blush: Your job id is: \`${jobId}\``)
+        await interaction.reply(`Got it! Your job id is: \`${jobId}\``)
     },
 };
