@@ -42,11 +42,10 @@ jobs:
 
       - name: create .env file
         run: |
-          ssh staging 'cd dungvt-bot'  
-          ssh staging 'touch .env'
-          ssh staging 'echo token=${{ secrets.TOKEN }} >> .env'
-          ssh staging 'echo clientId=${{secrets.CLIENTID}} >> .env'
-          ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> .env'
+          ssh staging 'touch dungvt-bot/.env'
+          ssh staging 'echo token=${{ secrets.TOKEN }} >> dungvt-bot/.env'
+          ssh staging 'echo clientId=${{secrets.CLIENTID}} >> dungvt-bot/.env'
+          ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> dungvt-bot/.env'
 
       # - name: Start the server
       #   run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
