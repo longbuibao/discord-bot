@@ -31,7 +31,7 @@ jobs:
       #   run: ssh staging 'pm2 delete all'
 
       - name: Check out the source
-        run: ssh staging 'cd dungvt-bot && git fetch && git reset --hard origin/master'
+        run: ssh staging 'cd dungvt-bot'
 
       - name: Print something
         run: ssh staging 'pwd;whoami;ls -a'
