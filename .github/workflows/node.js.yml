@@ -1,29 +1,45 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+name: CI - Master
+  on:
+    push:
+      branches: [ main ]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm run hello-cua
+      - uses: actions/checkout@v2
+      #
+      # ... your other steps, such as running tests, etc...
+      #
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ./deploy.key
+          sudo chmod 600 ./deploy.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+
+      # (optional - only needed if your config uses environment variables)
+      - name: Create env file
+        run: |
+          touch .env
+          echo token=${{ secrets.token }} >> .env
+          echo clientId=${{ secrets.clientId }} >> .env
+          echo spoonacularApi=${{ secrets.380b5dc810bf47a9834fd73411f0ef92 }} >> .env
+
+      - name: Install PM2
+        run: npm i pm2
+      
+      - name: Install package
+        run: npm install
+
+      - name: Remove all pm2 previous
+        run: pm2 delete cua-bot
+        
+      - name: Deploy
+        run: pm2 start "npm run hello-cua" --name cua-bot
+        # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
+        # run: yarn deploy
