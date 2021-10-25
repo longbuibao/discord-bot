@@ -31,7 +31,7 @@ jobs:
           echo spoonacularApi=${{ secrets.spoonacularApi }} >> .env
 
       - name: Install PM2
-        run: npm i pm2
+        run: sudo npm i -g pm2
 
       - name: Install package
         run: npm install
