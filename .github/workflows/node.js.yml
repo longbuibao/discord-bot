@@ -40,6 +40,7 @@ jobs:
       #   run: ssh staging 'npm install'
 
       - name: create .env file
+      - working-directory: ./dungvt-bot
         run: |
           ssh staging 'touch .env'
           ssh staging 'echo token=${{ secrets.TOKEN }} >> .env'
