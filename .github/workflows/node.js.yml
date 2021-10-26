@@ -9,51 +9,54 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: executing remote ssh commands using ssh key
+        uses: ./
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             whoami
             ls -a
 
-      # - name: Configure SSH
-      #   run: |
-      #     mkdir -p ~/.ssh/
-      #     echo "$SSH_KEY" > ~/.ssh/staging.key
-      #     chmod 600 ~/.ssh/staging.key
-      #     cat >>~/.ssh/config <<END
-      #     Host staging
-      #       HostName $SSH_HOST
-      #       User $SSH_USER
-      #       IdentityFile ~/.ssh/staging.key
-      #       StrictHostKeyChecking no
-      #     END
-      #   env:
-      #     SSH_USER: ${{ secrets.SSH_USER }}
-      #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     SSH_HOST: ${{ secrets.SSH_HOST }}
+        # - name: Configure SSH
+        #   run: |
+        #     mkdir -p ~/.ssh/
+        #     echo "$SSH_KEY" > ~/.ssh/staging.key
+        #     chmod 600 ~/.ssh/staging.key
+        #     cat >>~/.ssh/config <<END
+        #     Host staging
+        #       HostName $SSH_HOST
+        #       User $SSH_USER
+        #       IdentityFile ~/.ssh/staging.key
+        #       StrictHostKeyChecking no
+        #     END
+        #   env:
+        #     SSH_USER: ${{ secrets.SSH_USER }}
+        #     SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        #     SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      # - name: Install pm2
-      #   run: ssh staging 'sudo npm install -g pm2'
+        # - name: Install pm2
+        #   run: ssh staging 'sudo npm install -g pm2'
 
-      # - name: Stop the server
-      #   run: ssh staging 'pm2 delete all'
+        # - name: Stop the server
+        #   run: ssh staging 'pm2 delete all'
 
-      # - name: npm install
-      #   run: ssh staging 'npm install'
+        # - name: npm install
+        #   run: ssh staging 'npm install'
 
-      # - name: Deploying
-      #   run: |
-      #     ssh staging 'cd dungvt-bot; git fetch --all; git reset --hard origin/main'
-      #     ssh staging 'touch dungvt-bot/.env'
-      #     ssh staging 'echo token=${{secrets.TOKEN}} >> dungvt-bot/.env'
-      #     ssh staging 'echo clientId=${{secrets.CLIENTID}} >> dungvt-bot/.env'
-      #     ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> dungvt-bot/.env'
-      #     ssh staging 'cd dungvt-bot;pm2 delete all ;pm2 start \"npm run hello-cua\" --name cua-bot\"'
+        # - name: Deploying
+        #   run: |
+        #     ssh staging 'cd dungvt-bot; git fetch --all; git reset --hard origin/main'
+        #     ssh staging 'touch dungvt-bot/.env'
+        #     ssh staging 'echo token=${{secrets.TOKEN}} >> dungvt-bot/.env'
+        #     ssh staging 'echo clientId=${{secrets.CLIENTID}} >> dungvt-bot/.env'
+        #     ssh staging 'echo spoonacularApi=${{secrets.SPOONACULARAPI}} >> dungvt-bot/.env'
+        #     ssh staging 'cd dungvt-bot;pm2 delete all ;pm2 start \"npm run hello-cua\" --name cua-bot\"'
 
-      # - name: Start the server
-      #   run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
+        # - name: Start the server
+        #   run: ssh staging 'pm2 start "npm run hello-cua" --name cua-bot'
