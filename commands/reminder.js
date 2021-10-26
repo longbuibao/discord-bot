@@ -22,6 +22,6 @@ module.exports = {
             client.channels.cache.get(interaction.channelId).send(`YO ${interaction.user} it's time for \`${todo}\``)
         }).bind(null, interaction), parseTime(time))
 
-        await interaction.reply(`Got it :white_check_mark: ! Your job id is: \`${jobId}\``)
+        await interaction.reply(`Got it :white_check_mark: Your job id is: \`${jobId}\``)
     },
 };
