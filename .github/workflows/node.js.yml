@@ -1,5 +1,5 @@
 name: CI - Master
-uses: actions/setup-node@v1
+# uses: actions/setup-node@v1
 on:
   push:
     branches: [main]
