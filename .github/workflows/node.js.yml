@@ -17,8 +17,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            whoami
-            ls -a
+            cd dungvt-bot
+            ls
 
     # - name: Configure SSH
     #   run: |
