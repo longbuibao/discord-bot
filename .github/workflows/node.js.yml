@@ -21,8 +21,6 @@ jobs:
             ls
             git fetch --all
             git reset --hard origin/main
-            pm2 delete all
-            pm2 start \"npm run hello-cua\" --name cua-bot\"
 
     # - name: Configure SSH
     #   run: |
