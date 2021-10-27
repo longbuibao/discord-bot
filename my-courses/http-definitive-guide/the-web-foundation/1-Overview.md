@@ -65,3 +65,24 @@ An application often issues multiple HTTP transactions to accomplish a task. The
 - HTTP messages are simple, line-oriented sequences of characters.
 - HTTP messages sent from web clients to web servers are called _request messages_. Messages from servers to clients are called _response messages_
 - HTTP messages consist of three parts: - _Start line_: The first line of the message is the start line, indicating what to do for a request or what happened for a response. - _Header fields_: Zero or more header fields follow the start line. Each header field consists of a name and a value, separated by a colon (:). The headers end with a blank line. - _Body_: After the blank line is an optional message body containing any kind of data. The body may can contain a binary data (images, videos, audio,...) and also can contain text.
+
+# Proxies
+
+- A proxy sits between a client and a server, receiving all of the client's HTTP requests and relaying the requests to the server (perhaps after modifying the requests). These applications act as a proxy for the user, accessing the server on the user's behalf.
+
+# Caches
+
+A _web cache_ or _caching proxy_ is a special type of HTTP proxy server that keeps copies of popular documents that pass through the proxy. The next client requesting the same document can be served from the cache's personal copy.
+
+# Gateways
+
+- _Gateways_ are special servers that act as intermediaries for other servers. They are often used to convert HTTP traffic to another protocol. For example, an HTTP/FTP gateway receives requests for FTP URIs via HTTP requests but fetches the documents using the FTP protocol then packed into an HTTP message and sent to the client.
+
+# Tunnels
+
+- HTTP applications that, after setup, blindly relay raw data between two connections. HTTP tunnels are often used to transport non-HTTP data over one or more HTTP connections, without looking at the data.
+- One popular use of HTTP tunnels is to carry encrypted SSL traffic through an HTTP connection, allowing SSL traffic through corporate firewalls that permit only web traffic.
+
+# Agents
+
+- Semi-intelligent web clients that make automated HTTP requests
