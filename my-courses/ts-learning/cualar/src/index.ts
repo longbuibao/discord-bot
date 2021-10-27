@@ -1,8 +1,7 @@
 import { User } from './models/User'
 
 const longbui = new User({ name: 'long bui', age: 21 })
-console.log(longbui.get('name'))
-console.log(longbui.get('age'))
-
-longbui.set({ name: 'bui long bao' })
-console.log(longbui)
+longbui.on('click', () => console.log('hello'))
+longbui.on('press', () => console.log('hello 2'))
+longbui.on('click', () => console.log('vcl'))
+console.log(longbui.events)

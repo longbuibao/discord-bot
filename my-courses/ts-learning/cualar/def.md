@@ -44,3 +44,17 @@ export class User {
 }
 console.log(new User({ name: 'long', age: 12 }).get('name')) // auto complete the get('') name || age will show up :D
 ```
+
+# Properties Definition
+
+```ts
+events: {[key: string]: Callback[]}
+```
+
+> Hey TS, we don't know what the different keys are going to be, we have no idea whatsoever, but we do know that they will be strings. In all different keys are going to point at values that are an array of callback functions
+
+```ts
+events: {key: Callback[]}
+```
+
+> In this case, we know that it will have a key name: `key` and value is array of `Callback` functions
