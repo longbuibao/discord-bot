@@ -6,3 +6,4 @@ dist/
 my-courses/**/build/
 *.tsbuildinfo
 *.bak
+my-courses/ts-learning/cualar/db.json
