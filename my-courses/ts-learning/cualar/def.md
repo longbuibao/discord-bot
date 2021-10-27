@@ -58,3 +58,9 @@ events: {key: Callback[]}
 ```
 
 > In this case, we know that it will have a key name: `key` and value is array of `Callback` functions
+
+# REST conventions
+
+> **GET - POST - PUT - DELETE**
+
+- These are conventions for making network requests to some outside server and base upon the type of request or the method of the request and the path that we make the request, it's going to affect exactly what that back in server is going to do for us.
