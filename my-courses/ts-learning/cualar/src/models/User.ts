@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
+import { Event } from './Events'
+
 const url = 'http://localhost:3000/'
 
 interface UserProp {
@@ -7,10 +9,8 @@ interface UserProp {
   id?: number
 }
 
-type Callback = () => void
-
 export class User {
-  events: { [key: string]: Callback[] } = {}
+  events: Event = new Event()
 
   constructor(private data: UserProp) {}
 
@@ -20,20 +20,6 @@ export class User {
 
   set(update: UserProp): void {
     Object.assign(this.data, update)
-  }
-
-  on(eventName: string, callback: Callback): void {
-    const handlers = this.events[eventName] || []
-    handlers.push(callback)
-    this.events[eventName] = handlers
-  }
-
-  trigger(eventName: string): void {
-    const handlers = this.events[eventName]
-
-    if (!handlers || handlers.length === 0) return
-
-    handlers.forEach((callback) => callback())
   }
 
   fetch(): void {
