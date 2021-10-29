@@ -41,4 +41,13 @@ export class User {
       .get(url + `users/${this.get('id')}`)
       .then((response: AxiosResponse): void => this.set(response.data))
   }
+
+  save(): void {
+    const id = this.get('id')
+    if (id) {
+      axios.put(`${url}users/${id}`, this.data)
+    } else {
+      axios.post(`${url}users`, this.data)
+    }
+  }
 }
