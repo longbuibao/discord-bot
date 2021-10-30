@@ -64,3 +64,71 @@ events: {key: Callback[]}
 > **GET - POST - PUT - DELETE**
 
 - These are conventions for making network requests to some outside server and base upon the type of request or the method of the request and the path that we make the request, it's going to affect exactly what that back in server is going to do for us.
+
+# Getting two classes working with together
+
+```ts
+class User {
+  sync: Sync
+}
+
+class Sync {
+  save() {
+    /* do something with User instance*/
+  }
+  fetch() {
+    /* do something with User instance*/
+  }
+}
+```
+
+## Option #1
+
+Sync gets function arguments.
+
+```ts
+class Sync {
+  save(id: number, data: UserProp): void
+  fetch(id: number): UserProp
+}
+```
+
+> This approach here absolutely, positively would work, the big downside to it, however, is that `class Sync` will now be configured to only work with class, so we would have different Sync class to work with different data in application.
+
+## Option #2
+
+```ts
+interface Serializeable {
+  serialize(): {}
+} // serialize talking about saving something
+
+interface Deserializable {
+  deserialize(json: {}): void
+} // deserialize talking about taking something that was saved and putting it back into our application
+
+class Sync {
+  save(id: number, serialize: Serializeable): void
+  fetch(id: number, desiral: Deserializable): UserProp
+}
+```
+
+- Serialize: Convert data from an object into some save-able format (json)
+- Deserialize: Put data on an object using some previously saved data (json)
+
+Try to setup class Sync to also define two interfaces, maybe an interface call `Serializeable` and `Deserializable`.
+The idea behind serialize is that some other class or some other object would have to implement this interface to work with `Sync class`
+
+> This is pretty good, but the downside is once again, that we've got the output from serialized, all we can say is this is going to be an object with _some properties_. We can't specifically say what properties are going to be on there, because if we do, we're going to lock in this interface or class Sync to be only good for class User. The same thing is true of Deserializable. So we lose some type safety
+
+## Option #3
+
+Sync is a generic class to customize the type of 'data' coming into `save()`
+
+```ts
+class Sync<T> {
+  save(id: number, data: T): AxiosPromise<T>
+  fetch(id: number): AxiosPromise<T>
+}
+```
+
+When ever we make use of `class Sync`, we're going to specify the type of `T` and then type `T` is basically going to flow down and define all the different types inside our class
