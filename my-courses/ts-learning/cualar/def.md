@@ -132,3 +132,5 @@ class Sync<T> {
 ```
 
 When ever we make use of `class Sync`, we're going to specify the type of `T` and then type `T` is basically going to flow down and define all the different types inside our class
+
+lazy day
