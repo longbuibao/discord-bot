@@ -17,3 +17,5 @@ const attrs = new Attribute<UserProp>({
   age: 20,
   name: 'long',
 })
+
+attrs.get('age')
