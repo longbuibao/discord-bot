@@ -1,5 +1,3 @@
-import { UserProp } from './User'
-
 export class Attribute<T> {
   constructor(private data: T) {}
 
@@ -11,11 +9,3 @@ export class Attribute<T> {
     Object.assign(this.data, update)
   }
 }
-
-const attrs = new Attribute<UserProp>({
-  id: 5,
-  age: 20,
-  name: 'long',
-})
-
-attrs.get('age')
