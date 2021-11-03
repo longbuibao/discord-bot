@@ -6,7 +6,6 @@ export class Attribute<T> {
   }
 
   set(update: T): void {
-    console.log(this)
     Object.assign(this.data, update)
   }
 
