@@ -12,7 +12,7 @@ export interface UserProp {
 }
 
 export class User extends Model<UserProp> {
-  static buildBuild(attrs: UserProp): User {
+  static buildUser(attrs: UserProp): User {
     return new User(
       new Attribute<UserProp>(attrs),
       new ApiSync<UserProp>(url),

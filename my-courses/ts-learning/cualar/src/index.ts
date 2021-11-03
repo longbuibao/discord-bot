@@ -1,3 +1,3 @@
 import { User } from './models/User'
 
-const user = User.buildBuild({})
+const user = User.buildUser({})
