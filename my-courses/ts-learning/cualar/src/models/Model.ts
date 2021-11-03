@@ -40,7 +40,6 @@ export class Model<T extends HasId> {
   }
 
   set(update: T): void {
-    console.log(this)
     this.attribute.set(update)
     this.events.trigger('change')
   }
