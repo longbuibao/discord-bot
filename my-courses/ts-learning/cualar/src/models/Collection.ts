@@ -1,12 +1,12 @@
 import axios, { AxiosResponse } from 'axios'
-import { User, UserProp } from './User'
 import { Event } from './Events'
 
-export class Collection {
-  models: User[] = []
+// K is structure of JSON we get back
+export class Collection<T, K> {
+  models: T[] = []
   events: Event = new Event()
 
-  constructor(public rootUrl: string) {}
+  constructor(public rootUrl: string, public deserialize: (data: K) => T) {}
 
   get on() {
     return this.events.on
@@ -18,9 +18,8 @@ export class Collection {
 
   fetch(): void {
     axios.get(this.rootUrl).then((res: AxiosResponse) => {
-      res.data.forEach((data: UserProp) => {
-        const user = User.buildUser(data)
-        this.models.push(user)
+      res.data.forEach((data: K) => {
+        this.models.push(this.deserialize(data))
       })
 
       this.trigger('change')

@@ -2,6 +2,7 @@ import { Model } from './Model'
 import { Attribute } from './Attribute'
 import { ApiSync } from './ApiSync'
 import { Event } from './Events'
+import { Collection } from './Collection'
 
 const url = 'http://localhost:3000/users'
 
@@ -18,5 +19,11 @@ export class User extends Model<UserProp> {
       new ApiSync<UserProp>(url),
       new Event()
     )
+  }
+
+  static buildUserCollection(): Collection<User, UserProp> {
+    return new Collection<User, UserProp>(url, (data: UserProp) => {
+      return User.buildUser(data)
+    })
   }
 }
