@@ -1,8 +1,8 @@
 export {}
 class Stuff {
   constructor(public stuff: string) {}
-  sayStuff = () => {
-    this.stuff = 'new Hamer'
+  sayStuff() {
+    console.log(this)
     console.log(this.stuff)
   }
 }
@@ -19,5 +19,6 @@ class Person {
 }
 
 const longbui = new Person('longbui')
-longbui.say()
-longbui.a.sayStuff()
+
+const sayStuff = longbui.a.sayStuff
+sayStuff()

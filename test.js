@@ -2,13 +2,12 @@
 exports.__esModule = true;
 var Stuff = /** @class */ (function () {
     function Stuff(stuff) {
-        var _this = this;
         this.stuff = stuff;
-        this.sayStuff = function () {
-            _this.stuff = 'new Hamer';
-            console.log(_this.stuff);
-        };
     }
+    Stuff.prototype.sayStuff = function () {
+        console.log(this);
+        console.log(this.stuff);
+    };
     return Stuff;
 }());
 var Person = /** @class */ (function () {
@@ -23,5 +22,5 @@ var Person = /** @class */ (function () {
     return Person;
 }());
 var longbui = new Person('longbui');
-longbui.say();
-longbui.a.sayStuff();
+var sayStuff = longbui.a.sayStuff;
+sayStuff();
