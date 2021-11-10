@@ -1,5 +1,10 @@
 import { Router, Request, Response } from 'express'
-import { type } from 'os'
+
+interface RequestBody extends Request {
+  body: {
+    [key: string]: string | undefined
+  }
+}
 
 const router = Router()
 
@@ -19,8 +24,14 @@ router.get('/login', (req: Request, res: Response) => {
 	`)
 })
 
-router.post('/login', (req: Request, res: Response) => {
+router.post('/login', (req: RequestBody, res: Response) => {
   const { email, password } = req.body
+
+  if (email) {
+    res.send(email)
+  } else {
+    res.send('You must provide an email')
+  }
 })
 
 export { router }
