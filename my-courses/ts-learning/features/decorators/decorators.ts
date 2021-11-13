@@ -1,15 +1,15 @@
-@classDecorator
+// @classDecorator
 class Boat {
   //   @testDecorator
   color: string = 'red'
 
-  //   @testDecorator
+  @testDecorator
   get formattedColor(): string {
     return `this boats color is ${this.color}`
   }
 
   //   @logError('OH SHIT')
-  pilot(@parameterDecorator speed: string): void {
+  pilot(speed: string): void {
     if (speed === 'fast') console.log('swish')
     else console.log('nothing')
   }
@@ -24,7 +24,7 @@ function parameterDecorator(target: any, key: string, index: number) {
 }
 
 function testDecorator(target: any, key: string) {
-  console.log(key)
+  console.log(arguments)
 }
 
 function logError(errorMessage: string) {
