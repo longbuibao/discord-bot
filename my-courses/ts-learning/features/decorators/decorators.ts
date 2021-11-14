@@ -3,8 +3,8 @@ class Boat {
   //   @testDecorator
   color: string = 'red'
 
-  @testDecorator
-  get formattedColor(): string {
+  // @testDecorator
+  formattedColor(): string {
     return `this boats color is ${this.color}`
   }
 
@@ -15,30 +15,32 @@ class Boat {
   }
 }
 
-function classDecorator(constructor: typeof Boat) {
-  console.log(constructor)
-}
+console.log(Boat.prototype)
 
-function parameterDecorator(target: any, key: string, index: number) {
-  console.log(key, index)
-}
+// function classDecorator(constructor: typeof Boat) {
+//   console.log(constructor)
+// }
 
-function testDecorator(target: any, key: string) {
-  console.log(arguments)
-}
+// function parameterDecorator(target: any, key: string, index: number) {
+//   console.log(key, index)
+// }
 
-function logError(errorMessage: string) {
-  return function (target: any, key: string, desc: PropertyDescriptor): void {
-    const method = desc.value
+// function testDecorator(target: any, key: string) {
+//   console.log(arguments)
+// }
 
-    desc.value = function () {
-      try {
-        method()
-      } catch (error) {
-        console.log(errorMessage)
-      }
-    }
-  }
-}
+// function logError(errorMessage: string) {
+//   return function (target: any, key: string, desc: PropertyDescriptor): void {
+//     const method = desc.value
+
+//     desc.value = function () {
+//       try {
+//         method()
+//       } catch (error) {
+//         console.log(errorMessage)
+//       }
+//     }
+//   }
+// }
 
 // new Boat().pilot()
