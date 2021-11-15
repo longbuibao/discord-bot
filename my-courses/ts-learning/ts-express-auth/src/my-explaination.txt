@@ -1,0 +1,11 @@
+import controller, tu dong chay cac decorator
+
+sang logincontroller, chay @get('/login') truoc
+trong @get('/login') se them 1 cai metadata co key la 'path',
+value la path truyen vao, target la prototype, key la ten ham getLogin
+
+sau do chay tiep controller
+loop het cac thuoc tinh cua prototype va add route vao, sau do export router do ra
+xong, da co router ngon lanh
+import { router as controllerRouter } from './controllers/decorators/controller'
+tiep theo cho app.use(controllerRouter)
