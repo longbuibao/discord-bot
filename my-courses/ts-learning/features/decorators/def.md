@@ -12,4 +12,4 @@
 - Third argument is the property descriptor
 - Decorators are applied when the code for this class is ran (**not when an instance is created**)
 
-:v lazy day
+watch again `decorator` definition
