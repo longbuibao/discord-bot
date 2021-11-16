@@ -3,7 +3,7 @@ import { router } from './routes/loginRoutes'
 import cookieSession from 'cookie-session'
 
 import './controllers/LoginController'
-import { router as controllerRouter } from './controllers/decorators/controller'
+import { AppRouter } from './AppRouter'
 
 const app = express()
 
@@ -16,6 +16,6 @@ app.use(
 )
 
 app.use(router)
-app.use(controllerRouter)
+app.use(AppRouter.getInstance())
 
 app.listen(3000, () => console.log('Listenning'))
