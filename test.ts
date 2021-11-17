@@ -1,24 +1,9 @@
-export {}
-class Stuff {
-  constructor(public stuff: string) {}
-  sayStuff() {
-    console.log(this)
-    console.log(this.stuff)
+export class Singleton {
+  private static instance: Singleton
+  static getInstance(): Singleton {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton()
+    }
+    return Singleton.instance
   }
 }
-
-class Person {
-  constructor(public name: string) {}
-
-  a: Stuff = new Stuff('hamer')
-
-  say() {
-    console.log(this.name)
-    this.a.sayStuff()
-  }
-}
-
-const longbui = new Person('longbui')
-
-const sayStuff = longbui.a.sayStuff
-sayStuff()
