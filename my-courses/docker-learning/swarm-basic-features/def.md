@@ -1,5 +1,7 @@
 # Overlay networking driver
 
+**This feature is for two hosts with different ip address, different network can talk to each other **
+
 Basically creating a Swarm-wide bridge network
 
 - Add the `--driver overlay` option when creating network where the containers across hosts on the same virtual network can access each other kind of like they're on a VLAN
