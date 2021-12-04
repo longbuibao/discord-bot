@@ -1,3 +1,12 @@
+# What happends in `docker container run`
+
+- Looks for that image locally in image cache, doesn't find anything.
+- Then looks in remote image repository (defaults to Docker Hub).
+- Downloads the latest version.
+- Creates new container based on that image and prepares to start.
+- Gives it a virtual IP on a private network inside docker engine.
+- Open port on host and forwards to port in container.
+
 # Docker Defaults Networks
 
 Each container connected to a private virtual network "bridge". Each virtual network go through a NAT firewall on host IP
@@ -95,22 +104,24 @@ docker container exec -it nginx_alpine ping new_nginx
 
 `network driver`: built in or 3rd extensions that give you virtual network features, simply driver that create a virtual network locally with its own subnet
 
-#### `docker network ls`
+# Some commands
 
-> Show networks
+`docker network ls`
 
-#### `docker network inspect`
+- Show networks
 
-> Inspect a network
+`docker network inspect`
 
-#### `docker network create --driver`
+- Inspect a network
 
-> Create a network
+`docker network create --driver`
 
-#### `docker network connect`
+- Create a network
 
-> Attach a network to container
+`docker network connect`
 
-#### `docker network disconnect`
+- Attach a network to container
 
-> Detach a network from a container
+`docker network disconnect`
+
+- Detach a network from a container
