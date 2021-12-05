@@ -37,7 +37,7 @@ RUN apk add --update tini \
 
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app/
+COPY . .
 
 RUN npm install \
   && npm cache clean --force
