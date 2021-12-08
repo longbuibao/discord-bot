@@ -17,3 +17,4 @@ Basically creating a Swarm-wide bridge network
 - Load balance Swarm Service across their Tasks
   **Two ways this works**
 - From one container to container. If our back end system, like say the database, were increased to two replicas, the front end talking to the back end, wouldn't actually talking directly to their IP address. They will actually talk to something call **_VIP_** (virtual IP) that Swarm put to front of all services and this is a private IP inside the virtual networking of Swarm, and it ensures that the load is distributed among all the tasks for a service
+yo
