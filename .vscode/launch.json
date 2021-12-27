@@ -7,11 +7,11 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Launch Program",
+			"name": "Debug",
 			"skipFiles": [
 				"<node_internals>/**"
 			],
-			"program": "${workspaceFolder}/my-courses/ts-learning/reuseable-code/src/index.ts"
+			"program": "${workspaceFolder}/my-courses/ts-learning/new-course/ts-complier/src/app.ts"
 		}
 	]
 }
