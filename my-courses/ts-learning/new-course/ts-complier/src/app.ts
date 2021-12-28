@@ -1,31 +1,12 @@
-interface Yo {
-  name: string
+type Overloading = string | number
+
+function add(a: string, b: string): string
+function add(a: number, b: number): number
+function add(a: Overloading, b: Overloading) {
+  if (typeof a === 'string' || typeof b === 'string') {
+    return a.toString() + b.toString()
+  }
+  return a + b
 }
 
-class Department {
-  static Pi = 1e2
-  constructor(private name: string, private readonly id: string) {}
-  sayName(this: Department) {
-    console.log(`${this.name} has id of ${this.id}`)
-  }
-  static yo() {
-    console.log(Department.Pi)
-  }
-}
-
-class SingletonClass {
-  private static instance: SingletonClass
-
-  static getInstance(): SingletonClass {
-    if (!SingletonClass.instance) {
-      SingletonClass.instance = new SingletonClass()
-      return SingletonClass.instance
-    }
-    return SingletonClass.instance
-  }
-}
-
-const singleton1 = SingletonClass.getInstance()
-const singleton2 = SingletonClass.getInstance()
-
-console.log(singleton1 === singleton2)
+console.log(add(1, 2))
