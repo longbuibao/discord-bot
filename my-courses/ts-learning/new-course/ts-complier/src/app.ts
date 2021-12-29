@@ -1,12 +1,19 @@
-type Overloading = string | number
+class Human {
+  city: string = 'AN KHE'
+  yo() {}
+}
+const human: Array<Human> = []
 
-function add(a: string, b: string): string
-function add(a: number, b: number): number
-function add(a: Overloading, b: Overloading) {
-  if (typeof a === 'string' || typeof b === 'string') {
-    return a.toString() + b.toString()
-  }
-  return a + b
+const promise: Promise<string> = new Promise((resolve, reject) => {
+  resolve('')
+  reject()
+})
+
+promise.then((value) => value.split(''))
+
+function merge<T, Z>(objA: T, objB: Z) {
+  return Object.assign(objA, objB)
 }
 
-console.log(add(1, 2))
+const ob = merge(new Human(), { age: 12 })
+console.log(ob.city)
