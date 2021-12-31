@@ -1,41 +1,48 @@
-class Human {
-  city: string = 'AN KHE'
-  yo() {}
+function Logger(target: any, propertyName: string | Symbol) {
+  console.log(target)
+  console.log(propertyName)
+  console.log(arguments)
 }
 
-function merge<T extends object, U extends object>(objA: T, objB: U) {
-  return Object.assign(objA, objB)
-}
-
-const ob = merge(new Human(), { age: 12 })
-
-function extractAndConvert<T extends object, U extends keyof T>(
-  objA: T,
-  keys: U
+function Log2(
+  target: any,
+  name: string | Symbol,
+  descriptor: PropertyDescriptor
 ) {
-  return objA[keys]
+  console.log('prop decorator')
+  console.log(target)
+  console.log(name)
+  console.log(descriptor)
 }
 
-console.log(
-  extractAndConvert(
-    {
-      name: 'long bui',
-      age: 12,
-    },
-    'age'
-  )
-)
-
-interface CatInfo {
-  age: number
-  breed: string
+function LogParams(
+  target: Object,
+  propertyKey: string | symbol,
+  parameterIndex: number
+) {
+  console.log(target)
+  console.log(propertyKey)
+  console.log(parameterIndex)
 }
 
-type CatName = 'tep' | 'tom'
+class Person {
+  // @Logger
+  name: string = 'long bui bao'
 
-const cats: Record<CatName, CatInfo> = {
-  tep: { age: 12, breed: 'tep breed' },
-  tom: { age: 24, breed: 'tom breed' },
+  // @Log2
+  set setName(name: string) {
+    this.name = name
+  }
+
+  get getName(): string {
+    return this.name
+  }
+
+  sayHi(@LogParams name: string, @LogParams yo: string) {
+    console.log('Hi there')
+  }
+
+  constructor() {
+    console.log('creating person object...')
+  }
 }
-
-console.log(cats)
