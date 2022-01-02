@@ -7,3 +7,4 @@ export class Singleton {
     return Singleton.instance
   }
 }
+console.log("")
