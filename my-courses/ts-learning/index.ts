@@ -17,3 +17,5 @@ axios.get(url).then((res) => {
 const logTodo = (id: number, title: string, completed: boolean) => {
   console.log(id, title, completed)
 }
+
+console.log(":'))")
