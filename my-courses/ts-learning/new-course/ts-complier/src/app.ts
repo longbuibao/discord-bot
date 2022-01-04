@@ -1,48 +1,26 @@
-function Logger(target: any, propertyName: string | Symbol) {
-  console.log(target)
-  console.log(propertyName)
-  console.log(arguments)
+function someDecorator<T extends { new (...arg: any[]): {} }>(target: T) {
+  return class extends target {
+    age: number = 12
+    constructor(...arg: any[]) {
+      super(...arg)
+    }
+  }
 }
 
-function Log2(
-  target: any,
-  name: string | Symbol,
-  descriptor: PropertyDescriptor
-) {
-  console.log('prop decorator')
-  console.log(target)
-  console.log(name)
-  console.log(descriptor)
-}
+// function someDecorator(target: any) {
+//   console.log(target)
+// }
 
-function LogParams(
-  target: Object,
-  propertyKey: string | symbol,
-  parameterIndex: number
-) {
-  console.log(target)
-  console.log(propertyKey)
-  console.log(parameterIndex)
-}
-
+@someDecorator
 class Person {
-  // @Logger
   name: string = 'long bui bao'
-
-  // @Log2
-  set setName(name: string) {
-    this.name = name
+  print() {
+    console.log(this.name)
   }
-
-  get getName(): string {
-    return this.name
-  }
-
-  sayHi(@LogParams name: string, @LogParams yo: string) {
-    console.log('Hi there')
-  }
-
   constructor() {
     console.log('creating person object...')
   }
 }
+
+const person = new Person()
+console.log(person)
