@@ -7,9 +7,9 @@ function someDecorator<T extends { new (...arg: any[]): {} }>(target: T) {
   }
 }
 
-// function someDecorator(target: any) {
-//   console.log(target)
-// }
+function someDecoratorMore(target: any) {
+  console.log(target)
+}
 
 @someDecorator
 class Person {
