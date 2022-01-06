@@ -1,26 +1,28 @@
-function someDecorator<T extends { new (...arg: any[]): {} }>(target: T) {
-  return class extends target {
-    age: number = 12
-    constructor(...arg: any[]) {
-      super(...arg)
-    }
+function AutoBind(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value as Function
+  const adjeDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    get() {
+      return originalMethod.bind(this)
+    },
+  }
+  return adjeDescriptor
+}
+
+class Print {
+  message = 'This is a message'
+
+  @AutoBind
+  showMessage() {
+    console.log(this.message)
   }
 }
 
-function someDecoratorMore(target: any) {
-  console.log(target)
-}
-
-@someDecorator
-class Person {
-  name: string = 'long bui bao'
-  print() {
-    console.log(this.name)
-  }
-  constructor() {
-    console.log('creating person object...')
-  }
-}
-
-const person = new Person()
-console.log(person)
+const p = new Print()
+const button = document.querySelector('button')
+button?.addEventListener('click', p.showMessage)
