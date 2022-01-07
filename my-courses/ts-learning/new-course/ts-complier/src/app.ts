@@ -23,6 +23,28 @@ class Print {
   }
 }
 
-const p = new Print()
-const button = document.querySelector('button')
-button?.addEventListener('click', p.showMessage)
+// const p = new Print()
+// const button = document.querySelector('button')
+// button?.addEventListener('click', p.showMessage)
+
+class Course {
+  title: string
+  price: number
+  constructor(title: string, price: number) {
+    this.title = title
+    this.price = price
+  }
+}
+
+const courseFrom = document.querySelector('form')
+courseFrom?.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const titleElement = document.getElementById('title') as HTMLInputElement
+  const priceElement = document.getElementById('price') as HTMLInputElement
+
+  const title = titleElement.value
+  const price = +priceElement.value
+
+  const course = new Course(title, price)
+  console.log(course)
+})
