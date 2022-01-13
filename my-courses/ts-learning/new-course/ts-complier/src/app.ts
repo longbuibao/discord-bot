@@ -78,6 +78,8 @@ class ProjectList {
   private attach() {
     this.hostElement.insertAdjacentElement('beforeend', this.element)
   }
+
+  addProject() {}
 }
 
 class ProjectInput {
@@ -172,4 +174,3 @@ class ProjectInput {
 const projectInput = new ProjectInput()
 const activeProjectList = new ProjectList('active')
 const finishedProjectList = new ProjectList('finished')
-console.log('yo')
