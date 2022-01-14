@@ -54,6 +54,13 @@ enum ProjectStatus {
   Finished,
 }
 
+class State<T> {
+  protected listeners: Listener<T>[] = []
+  addListener(listeners: Listener<T>) {
+    this.listeners.push(listeners)
+  }
+}
+
 abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   templateElement: HTMLTemplateElement
   hostElement: T
@@ -98,7 +105,7 @@ class Project {
   ) {}
 }
 
-type Listener = (items: Project[]) => void
+type Listener<T> = (items: T[]) => void
 
 class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   assignedProjects: any[]
@@ -147,22 +154,19 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
   }
 }
 
-class ProjectState {
+class ProjectState extends State<Project> {
   private project: any[] = []
-  private listeners: Listener[] = []
   private static instance: ProjectState
 
-  private constructor() {}
+  private constructor() {
+    super()
+  }
 
   static getInstance() {
     if (this.instance) return this.instance
 
     this.instance = new ProjectState()
     return this.instance
-  }
-
-  addListener(listeners: Listener) {
-    this.listeners.push(listeners)
   }
 
   addProject(title: string, description: string, numOfPeople: number) {
