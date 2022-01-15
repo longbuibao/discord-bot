@@ -1,3 +1,15 @@
+// drag and drop interface
+interface Draggable {
+  dragStartHandler(event: DragEvent): void
+  dragEndHandler(event: DragEvent): void
+}
+
+interface DragTarget {
+  dragOverHandler(event: DragEvent): void
+  dropHandler(event: DragEvent): void
+  dragLeaveHandler(event: DragEvent): void
+}
+
 interface Validatable {
   value: string | number
   required?: boolean
@@ -108,7 +120,10 @@ class Project {
 
 type Listener<T> = (items: T[]) => void
 
-class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
+class ProjectItem
+  extends Component<HTMLUListElement, HTMLLIElement>
+  implements Draggable
+{
   private project: Project
 
   get persons() {
@@ -123,7 +138,22 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
     this.configure()
     this.renderContent()
   }
-  configure(): void {}
+
+  @AutoBind
+  dragStartHandler(event: DragEvent): void {
+    event.dataTransfer?.setData('text/plain', this.project.id)
+    event.dataTransfer!.effectAllowed = 'move'
+  }
+
+  dragEndHandler(event: DragEvent): void {
+    console.log('drag end')
+  }
+
+  configure(): void {
+    this.element.addEventListener('dragstart', this.dragStartHandler)
+    this.element.addEventListener('dragend', this.dragEndHandler)
+  }
+
   renderContent(): void {
     this.element.querySelector('h2')!.textContent = this.project.title
     this.element.querySelector('h3')!.textContent = this.persons + ' assigned'
@@ -131,7 +161,10 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
   }
 }
 
-class ProjectList extends Component<HTMLDivElement, HTMLElement> {
+class ProjectList
+  extends Component<HTMLDivElement, HTMLElement>
+  implements DragTarget
+{
   assignedProjects: any[]
 
   constructor(private type: 'active' | 'finished') {
@@ -139,19 +172,32 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     this.assignedProjects = []
     this.element.id = `${this.type}-projects`
 
-    projectState.addListener((projects: Project[]) => {
-      const relevantProjects = projects.filter((prj) => {
-        if (this.type === 'active') {
-          return prj.status === ProjectStatus.Active
-        }
-        return prj.status === ProjectStatus.Finished
-      })
-      this.assignedProjects = relevantProjects
-      this.renderProjects()
-    })
-
     this.configure()
     this.renderContent()
+  }
+
+  @AutoBind
+  dragOverHandler(event: DragEvent) {
+    if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+      event.preventDefault()
+      const listEl = this.element.querySelector('ul')
+      listEl?.classList.add('droppable')
+    }
+  }
+
+  @AutoBind
+  dropHandler(event: DragEvent): void {
+    const prjId = event.dataTransfer!.getData('text/plain')
+    projectState.moveProject(
+      prjId,
+      this.type === 'active' ? ProjectStatus.Active : ProjectStatus.Finished
+    )
+  }
+
+  @AutoBind
+  dragLeaveHandler(event: DragEvent): void {
+    const listEl = this.element.querySelector('ul')
+    listEl?.classList.remove('droppable')
   }
 
   private renderProjects() {
@@ -166,7 +212,22 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
     }
   }
 
-  configure(): void {}
+  configure(): void {
+    this.element.addEventListener('dragover', this.dragOverHandler)
+    this.element.addEventListener('dragleave', this.dragLeaveHandler)
+    this.element.addEventListener('drop', this.dropHandler)
+
+    projectState.addListener((projects: Project[]) => {
+      const relevantProjects = projects.filter((prj) => {
+        if (this.type === 'active') {
+          return prj.status === ProjectStatus.Active
+        }
+        return prj.status === ProjectStatus.Finished
+      })
+      this.assignedProjects = relevantProjects
+      this.renderProjects()
+    })
+  }
 
   renderContent() {
     const listId = `${this.type}-projects-list`
@@ -177,7 +238,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
 }
 
 class ProjectState extends State<Project> {
-  private project: any[] = []
+  private project: Project[] = []
   private static instance: ProjectState
 
   private constructor() {
@@ -202,6 +263,20 @@ class ProjectState extends State<Project> {
 
     this.project.push(newProject)
 
+    for (const iterator of this.listeners) {
+      iterator(this.project.slice())
+    }
+  }
+
+  moveProject(projectId: string, newStatus: ProjectStatus) {
+    const project = this.project.find((prj) => prj.id === projectId)
+    if (project) {
+      project.status = newStatus
+      this.updateListeners()
+    }
+  }
+
+  private updateListeners() {
     for (const iterator of this.listeners) {
       iterator(this.project.slice())
     }
