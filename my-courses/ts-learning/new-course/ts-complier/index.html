@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ProjectManager</title>
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="style.css" />
     <script type="module" src="dist/bundle.js"></script>
 </head>
 
 <body>
-    <template id="project-input">
+    <!-- <template id="project-input">
       <form>
         <div class="form-control">
           <label for="title">Title</label>
@@ -43,7 +43,17 @@
         <ul></ul>
       </section>
     </template>
-    <div id="app"></div>
+    <div id="app"></div> -->
+
+    <div id="map">
+        <p>Please enter an address!</p>
+    </div>
+    <form>
+        <input type="text" id="address">
+        <button type="submit">SEARCH ADDRESS</button>
+    </form>
 </body>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css">
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
 
 </html>
