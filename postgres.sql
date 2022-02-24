@@ -30,13 +30,17 @@ SELECT name, population/area AS population_density FROM cities;
 
 SELECT CONCAT(name, ', ', UPPER(country)) AS city_country FROM cities;
 
-SELECT name, area FROM cities WHERE area > 4000
+SELECT name, area FROM cities WHERE area > 4000;
 
-SELECT * FROM cities WHERE area != 8223
+SELECT * FROM cities WHERE area != 8223;
 
-SELECT name, area FROM cities WHERE area IN ('a')
+SELECT name, area FROM cities WHERE name IN (SELECT name FROM cities);
 
+UPDATE cities SET population=39505000 WHERE name='Tokyo';
 
+DELETE FROM cities WHERE name='Tokyo';
+INSERT INTO cities (name, country, population, area)
+	VALUES ('Tokyo', 'Japan', 38505000, 8223)
 
 
 
